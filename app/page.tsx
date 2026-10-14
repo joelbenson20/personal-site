@@ -23,12 +23,12 @@ export default function Home() {
                   elegant technological solutions to social problems but 
                   am wary of the opportunists and thoughtless who with their AI 
                   hammers treat everything as a nail. I believe in telling powerful
-                  stories to bring to light the dark corners of our systems 
+                  stories to shed light on the dark corners of our systems 
                   but am wary of a digital landscape that disincentivizes this necessarily slow, 
                   meandering process.
                 </p>
                 <em>
-                  I want to work with you to wed humanity and its technology in greater harmony.
+                  I want to work with you to wed humanity and technology in greater harmony.
                 </em>
             </div>
         </section>
