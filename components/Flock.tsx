@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+// Tuned on a 1440×900 desktop; other screens scale from this
+const REFERENCE_AREA = 1440 * 900;
 const BIRD_COUNT = 500;
-const MIN_SPEED = 1.4;
+const MIN_SPEED = 1.4;        // speeds and distances are at the reference size
 const MAX_SPEED = 2.6;
 const VIEW_RADIUS = 70;       // how far a bird can see its flockmates
 const SEPARATION_RADIUS = 22; // personal space
@@ -32,6 +34,7 @@ export default function Flock() {
     // Keep the canvas matched to the window, sharp on retina screens
     let width = 0;
     let height = 0;
+    let scale = 1;
     const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       width = window.innerWidth;
@@ -39,6 +42,8 @@ export default function Flock() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Sizes, distances and speeds are lengths, so they scale with the square root of area
+      scale = Math.sqrt((width * height) / REFERENCE_AREA);
     };
     resize();
     window.addEventListener("resize", resize);
@@ -57,8 +62,8 @@ export default function Flock() {
       return {
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: Math.cos(angle) * MIN_SPEED,
-        vy: Math.sin(angle) * MIN_SPEED,
+        vx: Math.cos(angle) * MIN_SPEED * scale,
+        vy: Math.sin(angle) * MIN_SPEED * scale,
         phase: Math.random() * Math.PI * 2,
         flapSpeed: 0.15 + Math.random() * 0.1,
         size: 5 + Math.random() * 4,
@@ -69,6 +74,9 @@ export default function Flock() {
       // A slowly shifting wind, plus faster gusts on top, pushes the whole flock around
       const windX = (Math.sin(t * 0.0003) + 0.5 * Math.sin(t * 0.0017)) * WIND_STRENGTH;
       const windY = (Math.cos(t * 0.00021) + 0.5 * Math.cos(t * 0.0013)) * WIND_STRENGTH * 0.7;
+      const view = VIEW_RADIUS * scale;
+      const separation = SEPARATION_RADIUS * scale;
+      const margin = EDGE_MARGIN * scale;
 
       for (const b of birds) {
         let ax = windX;
@@ -80,7 +88,7 @@ export default function Flock() {
           const dx = o.x - b.x;
           const dy = o.y - b.y;
           const d2 = dx * dx + dy * dy;
-          if (d2 > VIEW_RADIUS * VIEW_RADIUS) continue;
+          if (d2 > view * view) continue;
 
           cx += o.x;
           cy += o.y;
@@ -89,9 +97,10 @@ export default function Flock() {
           neighbors++;
 
           // Separation: push away from birds that are too close
-          if (d2 > 0 && d2 < SEPARATION_RADIUS * SEPARATION_RADIUS) {
-            ax -= (dx / d2) * 3;
-            ay -= (dy / d2) * 3;
+          // (the push grows as distances shrink, so scale² keeps it in proportion)
+          if (d2 > 0 && d2 < separation * separation) {
+            ax -= (dx / d2) * 3 * scale * scale;
+            ay -= (dy / d2) * 3 * scale * scale;
           }
         }
 
@@ -105,17 +114,17 @@ export default function Flock() {
         }
 
         // Turn back before reaching the edges
-        if (b.x < EDGE_MARGIN) ax += (EDGE_MARGIN - b.x) * 0.002;
-        if (b.x > width - EDGE_MARGIN) ax -= (b.x - (width - EDGE_MARGIN)) * 0.002;
-        if (b.y < EDGE_MARGIN) ay += (EDGE_MARGIN - b.y) * 0.002;
-        if (b.y > height - EDGE_MARGIN) ay -= (b.y - (height - EDGE_MARGIN)) * 0.002;
+        if (b.x < margin) ax += (margin - b.x) * 0.002;
+        if (b.x > width - margin) ax -= (b.x - (width - margin)) * 0.002;
+        if (b.y < margin) ay += (margin - b.y) * 0.002;
+        if (b.y > height - margin) ay -= (b.y - (height - margin)) * 0.002;
 
         b.vx += ax * dt;
         b.vy += ay * dt;
 
         // Keep speed within a natural range
         const speed = Math.hypot(b.vx, b.vy);
-        const clamped = Math.min(MAX_SPEED, Math.max(MIN_SPEED, speed));
+        const clamped = Math.min(MAX_SPEED * scale, Math.max(MIN_SPEED * scale, speed));
         b.vx = (b.vx / speed) * clamped;
         b.vy = (b.vy / speed) * clamped;
 
@@ -138,7 +147,7 @@ export default function Flock() {
 
     // A top-down bird silhouette pointing along +x; wing span follows the wingbeat
     const drawBird = (b: Bird) => {
-      const s = b.size;
+      const s = b.size * scale;
       const span = s * (0.7 + 0.5 * Math.sin(b.phase));
 
       ctx.save();
