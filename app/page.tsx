@@ -25,7 +25,7 @@ export default function Home() {
                   hammers treat everything as a nail. I believe in telling powerful
                   stories to shed light on the dark corners of our systems 
                   but am wary of a digital landscape that disincentivizes this necessarily slow, 
-                  meandering process.
+                  reflective process.
                 </p>
                 <em>
                   I want to work with you to wed humanity and technology in greater harmony.
