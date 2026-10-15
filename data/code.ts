@@ -28,7 +28,7 @@ export const repos: Repo[] = [
     title: "Smartphone Addiction Prediction",
     years: "2026",
     description:
-      "An end-to-end machine-learning pipeline (Kaggle, two-person team) predicting problematic smartphone and internet use from survey and behavioral data: cleaning and quality checks, feature engineering, a logistic-regression baseline and a tuned LightGBM model, evaluated with ROC-AUC.",
+      "An end-to-end machine-learning pipeline (for a Kaggle competition) predicting problematic smartphone and internet use from survey and behavioral data: cleaning and quality checks, feature engineering, a logistic-regression baseline and a tuned LightGBM model, evaluated with ROC-AUC.",
     stack: ["Python", "pandas", "scikit-learn", "LightGBM", "Jupyter", "Git"],
     tags: ["data-science", "data-analysis", "research"],
     links: [
