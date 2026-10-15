@@ -8,7 +8,7 @@ export default function Home() {
                 alt="Photo of Joel Benson"
                 width={200}
                 height={200}
-                className="object-cover aspect-square grayscale"
+                className="object-cover aspect-square [mask-image:radial-gradient(circle,black_55%,transparent_72%)]"
                 priority
             />
             <div className="space-y-4">

@@ -7,7 +7,8 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/cv", label: "CV" },
   { href: "/writing", label: "Writing" },
-]
+  { href: "/code", label: "Code" },
+];
 
 export default function Nav() {
   const pathname = usePathname();
@@ -34,5 +35,5 @@ export default function Nav() {
         );
       })}
     </nav>
-  )
+  );
 }
