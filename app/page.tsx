@@ -25,7 +25,7 @@ export default function Bio() {
                   hammers treat everything as a nail. I believe in telling powerful
                   stories to shed light on the dark corners of our systems 
                   but am wary of a digital landscape that disincentivizes slow and 
-                  honest reflection. Though our social winds are often fierce,
+                  honest reflection. Though our cultural winds are often fierce,
                   I still believe that slow and steady will win the race.
                 </p>
                 <em>
