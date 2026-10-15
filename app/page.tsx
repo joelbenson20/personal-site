@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Home() {
+export default function Bio() {
     return (
         <section className="flex flex-col sm:flex-row items-center gap-8">
             <Image
