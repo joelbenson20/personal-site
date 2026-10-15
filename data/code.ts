@@ -67,7 +67,7 @@ export const repos: Repo[] = [
     stack: ["Python", "NetworkX", "NumPy", "Jupyter"],
     tags: ["data-science", "data-analysis"],
     links: [
-      { label: "github/MusicNetworkAnalysis", href: "https://github.com/joelbenson/MusicNetworkAnalysis" },
+      { label: "github/MusicNetworkAnalysis", href: "https://github.com/joelbenson20/Music-Network-Analysis" },
     ],
   },
   {
@@ -87,7 +87,7 @@ export const repos: Repo[] = [
     stack: ["Python", "Tweepy", "Plotly", "NumPy", "HTML"],
     tags: ["data-science", "software", "web"],
     links: [
-      { label: "github/EmotiMaps", href: "https://github.com/joelbenson/EmotiMaps" },
+      { label: "github/EmotiMaps", href: "https://github.com/joelbenson20/EmotiMaps" },
     ],
   },
   {
@@ -98,7 +98,7 @@ export const repos: Repo[] = [
     stack: ["Python", "Tkinter"],
     tags: ["software", "data-science"],
     links: [
-      { label: "github/Epidemic-Simulator", href: "https://github.com/joelbenson/Epidemic-Simulator" },
+      { label: "github/Epidemic-Simulator", href: "https://github.com/joelbenson20/Epidemic-Simulator" },
     ],
   },
   {
@@ -109,7 +109,7 @@ export const repos: Repo[] = [
     stack: ["Python", "NLP", "Jupyter"],
     tags: ["data-science", "software"],
     links: [
-      { label: "github/language-graph-generator", href: "https://github.com/joelbenson/language-graph-generator" },
+      { label: "github/language-graph-generator", href: "https://github.com/joelbenson20/language-graph-generator" },
     ],
   },
   {
@@ -120,7 +120,7 @@ export const repos: Repo[] = [
     stack: ["Python", "NLP"],
     tags: ["software", "data-science"],
     links: [
-      { label: "github/word-checker-and-recommender", href: "https://github.com/joelbenson/word-checker-and-recommender" },
+      { label: "github/word-checker-and-recommender", href: "https://github.com/joelbenson20/word-checker-and-recommender" },
     ],
   },
   {
@@ -131,7 +131,7 @@ export const repos: Repo[] = [
     stack: ["Python", "Graphics", "Geometry"],
     tags: ["software"],
     links: [
-      { label: "github/Object-Rotation", href: "https://github.com/joelbenson/Object-Rotation" },
+      { label: "github/Object-Rotation", href: "https://github.com/joelbenson20/Object-Rotation" },
     ],
   },
 ];
